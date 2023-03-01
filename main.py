@@ -21,13 +21,41 @@ def calc_sum(n, a, b):
 
 
 # Task 2 functions
+def filter_and_action(passed_list):
+    """Function for calculating list's values in task2"""
+    # Filter list for values
+    filtered_values = [x for x in passed_list if x >= 10 and x <= 100]
+    if not filtered_values:
+        return None, None, None, None
+    # Calculate rest of parameters
+    avg = sum(filtered_values) / len(filtered_values)
+    min_val = min(filtered_values)
+    max_val = max(filtered_values)
+    total = sum(filtered_values)
+    return avg, min_val, max_val, total
+
+
+def list_parser(input_list):
+    """Converter from few-dimensions list to one and provide calculations, check for empty"""
+    for lst in input_list:
+        avg, min_val, max_val, total = filter_and_action(lst)
+        if avg is None:
+            print("The list is empty, no output is provided")
+            input()
+        else:
+            print("Answer:")
+            print(f'({avg}, {min_val}, {max_val}, {total})')
+    input()
+
+
+# Main function
 
 print("Welcome to tasks")
 while True:
     try:
         print("Please select from following menu:\n"
               "[1] - task 1 (value of a string)\n"
-              "[2] - <coming soon>\n"
+              "[2] - task 2 (actions with list)\n"
               "[3] - <coming soon>\n"
               "[4] - <coming soon>\n"
               "[5] - <coming soon>\n"
@@ -63,7 +91,16 @@ while True:
                 input()
 
         elif choise == 2:
-            break
+            print("To modify values of list please visit our code (line 90)")
+            # Feel free to modify this list in order to change program output
+            input_list = [
+                [1, 10, 34, 110, 400, 30, 20],
+                [-5, -10, 55, 120, 30],
+                [2, 67, 23, 78, 200],
+            ]
+            print(f'List: {input_list}')
+            list_parser(input_list)
+
 
         elif choise == 3:
             break
@@ -79,4 +116,7 @@ while True:
 
     except ValueError:
         print("Wrong value entered... Try again!")
+        input()
+    except SyntaxError as e:
+        print(f"Error: Invalid syntax in input list in Task2 at line {e.lineno}")
         input()
