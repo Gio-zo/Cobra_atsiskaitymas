@@ -44,6 +44,7 @@ def firstTask():
         print("Same values can't appear in A and B")
         input()
 
+
 def secondTask():
     # Sukurti funkciją, kuri priima vieną parametrą a - vienos dimensijos sąrašas. Funkcijoje atliekamas sąrašo
     # filtravimas paliekant reikšmes iš intervalo 10-100. Funkcija grąžina išfiltruotų reikšmių: vidurkį, didžiausią ir
@@ -83,6 +84,7 @@ def secondTask():
     print(f'List: {input_list}')
     list_parser(input_list)
 
+
 def thirdTask():
     # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
     # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
@@ -90,22 +92,21 @@ def thirdTask():
     # išlaikyti simbolių eiliškumą).
 
     def separateText(x, y):
-        sepList = []
-        newStr = ""
+        sepList = [] # empty list for result
+        newStr = "" # temp empty string for appending values
 
-        parts = len(x) / y
         for i in range(0, len(x)):
-            if i % y == y - 1:
+            if i % y == y - 1: # checking if i value is last that we need to get
                 newStr += x[i]
-                newUniqStr = ""
+                newUniqStr = "" # new string for unique values
                 for char in newStr:
                     if char not in newUniqStr:
-                        newUniqStr += char
+                        newUniqStr += char # if value is unique - append
                 sepList.append(newUniqStr)
-                newStr = ""
+                newStr = "" # clear temp string
 
             else:
-                newStr += x[i]
+                newStr += x[i] # if not last value
         return sepList
 
     try:
@@ -113,36 +114,63 @@ def thirdTask():
         y = int(input("Please enter a single positive integer as y: "))
         if y < 0:
             print("y must be bigger than 0")
-            break
+            return
         if len(x) % y != 0:
             print("Cannot divide your chars x by number you entered y!")
-            break
+            return
         else:
             print(separateText(x, y))
     except ValueError:
         print("You entered a wrong value")
-    break
+    return
+
 
 def fourthTask():
     # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
     # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
     # sąlygos tenkinamos suskaidyti tekstą į lygias dalis po y simbolių ir atspausdinti unikalius simbolius (svarbu
     # išlaikyti simbolių eiliškumą).
-    break
+    return
 
 
 def fifthTask():
     # Sukurti funkciją, kuri atlieka teksto suspaudimą. Funkcija priima vieną parametrą x - tekstas ir grąžina tekstą
     # sudarytą iš simbolio ir jo iš eilės einančių pasikartojimų skaičiaus t.y. suspaudimas vykdomas grupuojant iš
     # eilės einančius simbolius.
-    break
+    try:
+        x = str(input("Please enter a string: "))
+    except ValueError:
+        print("Invalid string")
+        fifthTask()
 
+    def compress(x):
+        count = 1
+        newStr = ""
+        for i in range(0, len(x)):
+            if (i + 1 < len(x)): # check if not last value
+                if x[i] == x[i + 1]: # if there is same char next then add 1 to count
+                    count += 1
+                else: # if next value is different then appent to string that value and count
+                    newStr += x[i]
+                    newStr += str(count)
+                    count = 1 # reset counter
+            else:
+                newStr += x[i]
+                newStr += str(count) # if there is only one in row then add char and add number
+        return newStr
+
+    print(compress(x))
+    return
 
 
 if __name__ == '__main__':
     while True:
         print(f'[1] First task\n[2] Second task\n[3] Third task\n[4] Fourth task\n[5] Fifth task\n\n[0] Exit')
-        userInput = int(input('Enter your choice: '))
+        try:
+            userInput = int(input('Enter your choice: '))
+        except ValueError:
+            print("Must be an integer!")
+            break
         if userInput == 1:
             firstTask()
         elif userInput == 2:
