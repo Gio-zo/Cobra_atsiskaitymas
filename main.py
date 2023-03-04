@@ -50,25 +50,6 @@ def list_parser(input_list):
 
 # Task 3 functions
 
-# def separateText(x, y): zodziu cia problema kad ne taip supratau uzduoti
-#     sepList = []
-#     newStr = ""
-#
-#     parts = len(x) / y
-#     print(parts)
-#     for i in range (0, len(x)):
-#         if i % parts != parts-1:
-#             newStr += x[i]
-#         elif i % parts == parts-1:
-#             newStr += x[i]
-#             newUniqStr = ""
-#             for char in newStr:
-#                 if char not in newUniqStr:
-#                     newUniqStr += char
-#             sepList.append(newUniqStr)
-#             newStr = ""
-#
-#     return sepList
 
 def separateText(x, y):
     sepList = []
@@ -76,22 +57,19 @@ def separateText(x, y):
 
     parts = len(x) / y
     for i in range(0, len(x)):
-        try:
-            if i / (parts-i) == 1:
-                newStr += x[i]
-                newUniqStr = ""
-                for char in newStr:
-                    if char not in newUniqStr:
-                        newUniqStr += char
-                sepList.append(newUniqStr)
-                newStr = ""
-            else:
+        if i % y == y - 1:
+            newStr += x[i]
+            newUniqStr = ""
+            for char in newStr:
+                if char not in newUniqStr:
+                    newUniqStr += char
+            sepList.append(newUniqStr)
+            newStr = ""
 
-
-        except:
-            print('a')
+        else:
             newStr += x[i]
     return sepList
+
 
 # Main function
 
@@ -150,7 +128,7 @@ while True:
         elif choise == 3:
             try:
                 x = input("Please enter list of chars as x: ")
-                y = int(input("Please enter a single positive inteleger as y: "))
+                y = int(input("Please enter a single positive integer as y: "))
                 if y < 0:
                     print("y must be bigger than 0")
                     break
