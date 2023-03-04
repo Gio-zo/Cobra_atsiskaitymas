@@ -1,11 +1,14 @@
+# Klausimas: Ar kinamieji turi buti pavadinti kaip pateikta uzduotyje?! a,b,x,y ir t.t.???
 def firstTask():
     # Sukurti funkciją, kuri priima tris parametrus: n - tekstas, a - tekstas, kurio simboliai yra teigiami, b -
     # tekstas, kurio simboliai yra neigiami.Teigiami simboliai yra verti 1, neigiami verti - 1, o simboliai, kurių nėra
     # nei a, nei b tekste yra vertas 0. Funkcija suskaičiuoja teksto įvertį ir jį grąžina.
 
-    def parsing_string(string):
+    def parsing_string(user_string):
         """Function that take string and write it as a list"""
-        new_list = [x for x in string]
+        new_list = []
+        for x in user_string:
+            new_list.append(x)
         return new_list
 
     def calc_sum(n, a, b):
@@ -51,45 +54,50 @@ def secondTask():
     # mažiausią reikšmes, bei sumą. Sukurti antrą funkciją, kuri priima vieną parametrą b - sąrašą sudarytą iš sąrašų
     # ir kiekvienam sąrašo elementui iškviečia pirmą funkciją ir atspausdina gautą rezultatą.
 
-    def filter_and_action(passed_list):
-        """Function for calculating list's values in task2"""
-        # Filter list for values
-        filtered_values = []
-        try:
-            for x in passed_list:
-                if int(x) >= 10 and int(x) <= 100:
-                    filtered_values.append(x)
-            # filtered_values = [x for x in passed_list if x >= 10 and x <= 100]
-        except ValueError:
-            print("Something wrong with values")
-        if not filtered_values:
-            return None, None, None, None
-        # Calculate rest of parameters
-        avg = sum(filtered_values) / len(filtered_values)
-        min_val = min(filtered_values)
-        max_val = max(filtered_values)
-        total = sum(filtered_values)
-        return avg, min_val, max_val, total
+        def filter_and_action(passed_list):
+            """Function for calculating list's values"""
+            filtered_values = [] # This is where new list of filtered values is saved
+            try:
+                for x in passed_list:
+                    if int(x) >= 10 and int(x) <= 100:
+                        filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
+            except ValueError:
+                print("Something wrong with values")
+                return None, None, None, None  # Return early if ValueError occurs
+            if not filtered_values:
+                return None, None, None, None
+            # Calculate task of parameters
+            avg = sum(filtered_values) / len(filtered_values)
+            min_val = min(filtered_values)
+            max_val = max(filtered_values)
+            total = sum(filtered_values)
+            return avg, min_val, max_val, total
 
-    def list_parser(input_list):
-        """Converter from few-dimensions list to one and provide calculations, check for empty"""
-        for lst in input_list:
-            avg, min_val, max_val, total = filter_and_action(lst)
-            if avg is None:
-                print("The list is empty, no output is provided")
-                input()
+        def list_parser(input_list):
+            """Converter from few-dimensions list to one and do calculations, check for empty"""
+            for lst in input_list: # Do all necessary calculations on each list dimension
+                avg, min_val, max_val, total = filter_and_action(lst) # call function and get answers
+                if avg is None:
+                    print("The list is empty, no output is provided")
+                else:
+                    print("Answer:")
+                    print(f'({avg}, {min_val}, {max_val}, {total})')
+
+        user_list = [] # this list stores final user input list
+        while True:
+            user_input = input("Please provide comma separated integer list: ")
+            newlist = user_input.split(',')
+            user_list.append(newlist)
+            choice = input("Do you want to continue filling the list? [y/n]")
+            if choice.lower() == "y":  # Used lower() to handle uppercase input
+                continue # Get user input while answer is y, get back to while True
+            elif choice.lower() == "n": # activate if user finished with inputting list (choose n)
+                print(f'List: {user_list}')
+                list_parser(user_list) # Call functions to execute all necessary calculations
+                return
             else:
-                print("Answer:")
-                print(f'({avg}, {min_val}, {max_val}, {total})')
-        input()
-
-    input_list = [
-        [1, 10, 34, 110, 400, 30, 20],
-        [-5, -10, 55, 120, 30],
-        [2, 67, 23, 78, 200],
-    ]
-    print(f'List: {input_list}')
-    list_parser(input_list)
+                print("Wrong input, exiting task 2")
+                return
 
 
 def thirdTask():
@@ -138,7 +146,65 @@ def fourthTask():
     # bei sumą. Dekoratorius priima vieną parametrą x - skaičių. Atimti parametrą x iš kiekvienos dekoruojamos
     # funkcijos grąžinamos reikšmės.
 
-    return
+    def remove_number_decorator(func):
+        num = int(input("Enter a number to remove: ")) # get number that user what to subtract from results
+        def wrapper(*args):
+            avg, min_val, max_val, total = func(*args) # Call the original function
+            if avg is not None: # check if avg is not empty
+                # Subtract user imputed num from results
+                avg -= num
+                min_val -= num
+                max_val -= num
+                total -= num
+            # Return the updated average and other values
+            return avg, min_val, max_val, total
+        return wrapper
+
+    @remove_number_decorator
+    def filter_and_action(passed_list):
+        """Function for calculating list's values"""
+        filtered_values = []  # This is where new list of filtered values is saved
+        try:
+            for x in passed_list:
+                if int(x) >= 10 and int(x) <= 100:
+                    filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
+        except ValueError:
+            print("Something wrong with values")
+            return None, None, None, None  # Return early if ValueError occurs
+        if not filtered_values:
+            return None, None, None, None
+        # Calculate task of parameters
+        avg = sum(filtered_values) / len(filtered_values)
+        min_val = min(filtered_values)
+        max_val = max(filtered_values)
+        total = sum(filtered_values)
+        return avg, min_val, max_val, total
+
+    def list_parser(input_list):
+        """Converter from few-dimensions list to one and do calculations, check for empty"""
+        for lst in input_list:  # Do all necessary calculations on each list dimension
+            avg, min_val, max_val, total = filter_and_action(lst)  # call function and get answers
+            if avg is None:
+                print("The list is empty, no output is provided")
+            else:
+                print("Answer:")
+                print(f'({avg}, {min_val}, {max_val}, {total})')
+
+    user_list = []  # this list stores final user input list
+    while True:
+        user_input = input("Please provide comma separated integer list: ")
+        newlist = user_input.split(',')
+        user_list.append(newlist)
+        choice = input("Do you want to continue filling the list? [y/n]")
+        if choice.lower() == "y":  # Used lower() to handle uppercase input
+            continue  # Get user input while answer is y, get back to while True
+        elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
+            print(f'List: {user_list}')
+            list_parser(user_list)  # Call functions to execute all necessary calculations
+            return
+        else:
+            print("Wrong input, exiting task 2")
+            return
 
 
 def fifthTask():
@@ -168,6 +234,7 @@ def fifthTask():
         return newStr
 
     print(compress(x))
+    input()
     return
 
 
