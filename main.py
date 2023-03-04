@@ -54,7 +54,14 @@ def secondTask():
     def filter_and_action(passed_list):
         """Function for calculating list's values in task2"""
         # Filter list for values
-        filtered_values = [x for x in passed_list if x >= 10 and x <= 100]
+        filtered_values = []
+        try:
+            for x in passed_list:
+                if int(x) >= 10 and int(x) <= 100:
+                    filtered_values.append(x)
+            # filtered_values = [x for x in passed_list if x >= 10 and x <= 100]
+        except ValueError:
+            print("Something wrong with values")
         if not filtered_values:
             return None, None, None, None
         # Calculate rest of parameters
@@ -96,6 +103,7 @@ def thirdTask():
         newStr = "" # temp empty string for appending values
 
         for i in range(0, len(x)):
+            print(i % y)
             if i % y == y - 1: # checking if i value is last that we need to get
                 newStr += x[i]
                 newUniqStr = "" # new string for unique values
@@ -183,4 +191,3 @@ if __name__ == '__main__':
             fifthTask()
         else:
             exit(0)
-2
