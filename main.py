@@ -126,10 +126,10 @@ def thirdTask():
 
 
 def fourthTask():
-    # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
-    # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
-    # sąlygos tenkinamos suskaidyti tekstą į lygias dalis po y simbolių ir atspausdinti unikalius simbolius (svarbu
-    # išlaikyti simbolių eiliškumą).
+    # Sukurti dekoratorių antros užduoties funkcijai, kuri grąžina vidurkį, didžiausią ir mažiausią reikšmes,
+    # bei sumą. Dekoratorius priima vieną parametrą x - skaičių. Atimti parametrą x iš kiekvienos dekoruojamos
+    # funkcijos grąžinamos reikšmės.
+
     return
 
 
