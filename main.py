@@ -48,6 +48,51 @@ def list_parser(input_list):
     input()
 
 
+# Task 3 functions
+
+# def separateText(x, y): zodziu cia problema kad ne taip supratau uzduoti
+#     sepList = []
+#     newStr = ""
+#
+#     parts = len(x) / y
+#     print(parts)
+#     for i in range (0, len(x)):
+#         if i % parts != parts-1:
+#             newStr += x[i]
+#         elif i % parts == parts-1:
+#             newStr += x[i]
+#             newUniqStr = ""
+#             for char in newStr:
+#                 if char not in newUniqStr:
+#                     newUniqStr += char
+#             sepList.append(newUniqStr)
+#             newStr = ""
+#
+#     return sepList
+
+def separateText(x, y):
+    sepList = []
+    newStr = ""
+
+    parts = len(x) / y
+    for i in range(0, len(x)):
+        try:
+            if i / (parts-i) == 1:
+                newStr += x[i]
+                newUniqStr = ""
+                for char in newStr:
+                    if char not in newUniqStr:
+                        newUniqStr += char
+                sepList.append(newUniqStr)
+                newStr = ""
+            else:
+
+
+        except:
+            print('a')
+            newStr += x[i]
+    return sepList
+
 # Main function
 
 print("Welcome to tasks")
@@ -103,6 +148,19 @@ while True:
 
 
         elif choise == 3:
+            try:
+                x = input("Please enter list of chars as x: ")
+                y = int(input("Please enter a single positive inteleger as y: "))
+                if y < 0:
+                    print("y must be bigger than 0")
+                    break
+                if len(x) % y != 0:
+                    print("Cannot divide your chars x by number you entered y!")
+                    break
+                else:
+                    print(separateText(x, y))
+            except ValueError:
+                print("You entered a wrong value")
             break
 
         elif choise == 4:
