@@ -83,36 +83,19 @@ def secondTask():
     print(f'List: {input_list}')
     list_parser(input_list)
 
-# Task 3 functions
+def thirdTask():
+    # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
+    # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
+    # sąlygos tenkinamos suskaidyti tekstą į lygias dalis po y simbolių ir atspausdinti unikalius simbolius (svarbu
+    # išlaikyti simbolių eiliškumą).
 
-# def separateText(x, y): zodziu cia problema kad ne taip supratau uzduoti
-#     sepList = []
-#     newStr = ""
-#
-#     parts = len(x) / y
-#     print(parts)
-#     for i in range (0, len(x)):
-#         if i % parts != parts-1:
-#             newStr += x[i]
-#         elif i % parts == parts-1:
-#             newStr += x[i]
-#             newUniqStr = ""
-#             for char in newStr:
-#                 if char not in newUniqStr:
-#                     newUniqStr += char
-#             sepList.append(newUniqStr)
-#             newStr = ""
-#
-#     return sepList
+    def separateText(x, y):
+        sepList = []
+        newStr = ""
 
-def separateText(x, y):
-    sepList = []
-    newStr = ""
-
-    parts = len(x) / y
-    for i in range(0, len(x)):
-        try:
-            if i / (parts-i) == 1:
+        parts = len(x) / y
+        for i in range(0, len(x)):
+            if i % y == y - 1:
                 newStr += x[i]
                 newUniqStr = ""
                 for char in newStr:
@@ -120,103 +103,40 @@ def separateText(x, y):
                         newUniqStr += char
                 sepList.append(newUniqStr)
                 newStr = ""
+
             else:
+                newStr += x[i]
+        return sepList
 
-
-        except:
-            print('a')
-            newStr += x[i]
-    return sepList
-
-# Main function
-
-print("Welcome to tasks")
-while True:
     try:
-        print("Please select from following menu:\n"
-              "[1] - task 1 (value of a string)\n"
-              "[2] - task 2 (actions with list)\n"
-              "[3] - <coming soon>\n"
-              "[4] - <coming soon>\n"
-              "[5] - <coming soon>\n"
-              "[0] - exit program\n")
-        choise = int(input("You choose:"))
-
-        if choise == 0:
-            print("Bye!")
+        x = input("Please enter list of chars as x: ")
+        y = int(input("Please enter a single positive integer as y: "))
+        if y < 0:
+            print("y must be bigger than 0")
             break
-
-        elif choise == 1:
-            try:
-                # Defining variables & convert to list
-                n = input("Please provide n:")
-                list_n = parsing_string(n)
-                a = input("Please provide a:")
-                list_a = parsing_string(a)
-                b = input("Please provide b:")
-                list_b = parsing_string(b)
-
-                # Check if there are any same values in A and B
-                for char in list_b:
-                    if char in list_a:
-                        raise ValueError
-
-                # Do main calculations
-                answer = calc_sum(list_n, list_a, list_b)
-                print(f'Value of text is {answer}')
-                input()
-
-            except ValueError:
-                print("Same values can't appear in A and B")
-                input()
-
-        elif choise == 2:
-            print("To modify values of list please visit our code (line 90)")
-            # Feel free to modify this list in order to change program output
-            input_list = [
-                [1, 10, 34, 110, 400, 30, 20],
-                [-5, -10, 55, 120, 30],
-                [2, 67, 23, 78, 200],
-            ]
-            print(f'List: {input_list}')
-            list_parser(input_list)
-
-def thirdTask():
-    # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
-    # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
-    # sąlygos tenkinamos suskaidyti tekstą į lygias dalis po y simbolių ir atspausdinti unikalius simbolius (svarbu
-    # išlaikyti simbolių eiliškumą).
-
-
+        if len(x) % y != 0:
+            print("Cannot divide your chars x by number you entered y!")
+            break
+        else:
+            print(separateText(x, y))
+    except ValueError:
+        print("You entered a wrong value")
+    break
 
 def fourthTask():
     # Sukurti programą, kuri vartotojo paprašo įvesti simbolių seką - x, bei vieną skaitmenį - y. Atlikti patikrinimus,
     # jog y tikrai skaičius, jog jis yra didesnis už 0, bei x ilgis dalinasi į lygias dalis po y simbolių. Jei šios
     # sąlygos tenkinamos suskaidyti tekstą į lygias dalis po y simbolių ir atspausdinti unikalius simbolius (svarbu
     # išlaikyti simbolių eiliškumą).
+    break
 
-        elif choise == 3:
-            try:
-                x = input("Please enter list of chars as x: ")
-                y = int(input("Please enter a single positive inteleger as y: "))
-                if y < 0:
-                    print("y must be bigger than 0")
-                    break
-                if len(x) % y != 0:
-                    print("Cannot divide your chars x by number you entered y!")
-                    break
-                else:
-                    print(separateText(x, y))
-            except ValueError:
-                print("You entered a wrong value")
-            break
 
 def fifthTask():
     # Sukurti funkciją, kuri atlieka teksto suspaudimą. Funkcija priima vieną parametrą x - tekstas ir grąžina tekstą
     # sudarytą iš simbolio ir jo iš eilės einančių pasikartojimų skaičiaus t.y. suspaudimas vykdomas grupuojant iš
     # eilės einančius simbolius.
+    break
 
-    return
 
 
 if __name__ == '__main__':
