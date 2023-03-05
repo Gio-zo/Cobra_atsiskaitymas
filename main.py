@@ -74,9 +74,9 @@ def secondTask():
             return avg, min_val, max_val, total
 
         def list_parser(input_list):
-            # Converter from few-dimensions list to one and do calculations, check for empty
-            for lst in input_list: # Do all necessary calculations on each list dimension
-                avg, min_val, max_val, total = filter_and_action(lst) # call function and get answers
+            """Converter from few-dimensions list to one and do calculations, check for empty"""
+            for b in input_list: # Do all necessary calculations on each list dimension
+                avg, min_val, max_val, total = filter_and_action(b) # call function and get answers
                 if avg is None:
                     print("The list is empty, no output is provided")
                 else:
@@ -85,8 +85,8 @@ def secondTask():
 
         user_list = [] # this list stores final user input list
         while True:
-            user_input = input("Please provide comma separated integer list: ")
-            newlist = user_input.split(',')
+            a = input("Please provide comma separated integer list: ")
+            newlist = a.split(',')
             user_list.append(newlist)
             choice = input("Do you want to continue filling the list? [y/n]")
             if choice.lower() == "y":  # Used lower() to handle uppercase input
@@ -151,10 +151,10 @@ def fourthTask():
             avg, min_val, max_val, total = func(*args) # Call the original function
             if avg is not None: # check if avg is not empty
                 # Subtract user imputed num from results
-                avg -= num
-                min_val -= num
-                max_val -= num
-                total -= num
+                avg -= x
+                min_val -= x
+                max_val -= x
+                total -= x
             # Return the updated average and other values
             return avg, min_val, max_val, total
         return wrapper
@@ -180,9 +180,9 @@ def fourthTask():
         return avg, min_val, max_val, total
 
     def list_parser(input_list):
-        # Converter from few-dimensions list to one and do calculations, check for empty
-        for lst in input_list:  # Do all necessary calculations on each list dimension
-            avg, min_val, max_val, total = filter_and_action(lst)  # call function and get answers
+        """Converter from few-dimensions list to one and do calculations, check for empty"""
+        for b in input_list:  # Do all necessary calculations on each list dimension
+            avg, min_val, max_val, total = filter_and_action(b)  # call function and get answers
             if avg is None:
                 print("The list is empty, no output is provided")
             else:
@@ -198,7 +198,7 @@ def fourthTask():
         if choice.lower() == "y":  # Used lower() to handle uppercase input
             continue  # Get user input while answer is y, get back to while True
         elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
-            num = int(input("Enter a number to remove: "))  # get number that user what to subtract from results
+            x = int(input("Enter a number to remove: "))  # get number that user what to subtract from results
             print(f'List: {user_list}')
             list_parser(user_list)  # Call functions to execute all necessary calculations
             return
