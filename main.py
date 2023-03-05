@@ -5,14 +5,14 @@ def firstTask():
     # nei a, nei b tekste yra vertas 0. Funkcija suskaičiuoja teksto įvertį ir jį grąžina.
 
     def parsing_string(user_string):
-        """Function that take string and write it as a list"""
+        # Function that take string and write it as a list
         new_list = []
         for x in user_string:
             new_list.append(x)
         return new_list
 
     def calc_sum(n, a, b):
-        """Function that calculate value by taking "a" as PLUS and "b" as MINUS"""
+        # Function that calculate value by taking "a" as PLUS and "b" as MINUS
         value = 0
         for letter in n:
             # Check for a's
@@ -55,7 +55,7 @@ def secondTask():
     # ir kiekvienam sąrašo elementui iškviečia pirmą funkciją ir atspausdina gautą rezultatą.
 
         def filter_and_action(passed_list):
-            """Function for calculating list's values"""
+            # Function for calculating list's values
             filtered_values = [] # This is where new list of filtered values is saved
             try:
                 for x in passed_list:
@@ -74,7 +74,7 @@ def secondTask():
             return avg, min_val, max_val, total
 
         def list_parser(input_list):
-            """Converter from few-dimensions list to one and do calculations, check for empty"""
+            # Converter from few-dimensions list to one and do calculations, check for empty
             for lst in input_list: # Do all necessary calculations on each list dimension
                 avg, min_val, max_val, total = filter_and_action(lst) # call function and get answers
                 if avg is None:
@@ -161,7 +161,7 @@ def fourthTask():
 
     @remove_number_decorator
     def filter_and_action(passed_list):
-        """Function for calculating list's values"""
+        # Function for calculating list's values
         filtered_values = []  # This is where new list of filtered values is saved
         try:
             for x in passed_list:
@@ -180,7 +180,7 @@ def fourthTask():
         return avg, min_val, max_val, total
 
     def list_parser(input_list):
-        """Converter from few-dimensions list to one and do calculations, check for empty"""
+        # Converter from few-dimensions list to one and do calculations, check for empty
         for lst in input_list:  # Do all necessary calculations on each list dimension
             avg, min_val, max_val, total = filter_and_action(lst)  # call function and get answers
             if avg is None:
@@ -224,7 +224,7 @@ def fifthTask():
             if (i + 1 < len(x)): # check if not last value
                 if x[i] == x[i + 1]: # if there is same char next then add 1 to count
                     count += 1
-                else: # if next value is different then appent to string that value and count
+                else: # if next value is different, then append to string that value and count
                     newStr += x[i]
                     newStr += str(count)
                     count = 1 # reset counter
