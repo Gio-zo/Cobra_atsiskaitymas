@@ -77,7 +77,7 @@ def secondTask():
         for b in inputList:  # Do all necessary calculations on each list dimension
             avg, minVal, maxVal, total = filterAndAction(b)  # call function and get answers
             if avg is None:
-                print("The list is empty, no output is provided")
+                print("Can't provide answer")
             else:
                 print("Answer:")
                 print(f'({avg}, {minVal}, {maxVal}, {total})')
@@ -183,7 +183,7 @@ def fourthTask():
         for b in inputList:  # Do all necessary calculations on each list dimension
             avg, minVal, maxVal, total = filterAndAction(b)  # call function and get answers
             if avg is None:
-                print("The list is empty, no output is provided")
+                print("Can't provide answer")
             else:
                 print("Answer:")
                 print(f'({avg}, {minVal}, {maxVal}, {total})')
