@@ -54,50 +54,50 @@ def secondTask():
     # mažiausią reikšmes, bei sumą. Sukurti antrą funkciją, kuri priima vieną parametrą b - sąrašą sudarytą iš sąrašų
     # ir kiekvienam sąrašo elementui iškviečia pirmą funkciją ir atspausdina gautą rezultatą.
 
-        def filter_and_action(passed_list):
-            # Function for calculating list's values
-            filtered_values = [] # This is where new list of filtered values is saved
-            try:
-                for x in passed_list:
-                    if int(x) >= 10 and int(x) <= 100:
-                        filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
-            except ValueError:
-                print("Something wrong with values")
-                return None, None, None, None  # Return early if ValueError occurs
-            if not filtered_values:
-                return None, None, None, None
-            # Calculate task of parameters
-            avg = sum(filtered_values) / len(filtered_values)
-            min_val = min(filtered_values)
-            max_val = max(filtered_values)
-            total = sum(filtered_values)
-            return avg, min_val, max_val, total
+    def filter_and_action(passed_list):
+        # Function for calculating list's values
+        filtered_values = []  # This is where new list of filtered values is saved
+        try:
+            for x in passed_list:
+                if int(x) >= 10 and int(x) <= 100:
+                    filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
+        except ValueError:
+            print("Something wrong with values")
+            return None, None, None, None  # Return early if ValueError occurs
+        if not filtered_values:
+            return None, None, None, None
+        # Calculate task of parameters
+        avg = sum(filtered_values) / len(filtered_values)
+        min_val = min(filtered_values)
+        max_val = max(filtered_values)
+        total = sum(filtered_values)
+        return avg, min_val, max_val, total
 
-        def list_parser(input_list):
-            """Converter from few-dimensions list to one and do calculations, check for empty"""
-            for b in input_list: # Do all necessary calculations on each list dimension
-                avg, min_val, max_val, total = filter_and_action(b) # call function and get answers
-                if avg is None:
-                    print("The list is empty, no output is provided")
-                else:
-                    print("Answer:")
-                    print(f'({avg}, {min_val}, {max_val}, {total})')
-
-        user_list = [] # this list stores final user input list
-        while True:
-            a = input("Please provide comma separated integer list: ")
-            newlist = a.split(',')
-            user_list.append(newlist)
-            choice = input("Do you want to continue filling the list? [y/n]")
-            if choice.lower() == "y":  # Used lower() to handle uppercase input
-                continue # Get user input while answer is y, get back to while True
-            elif choice.lower() == "n": # activate if user finished with inputting list (choose n)
-                print(f'List: {user_list}')
-                list_parser(user_list) # Call functions to execute all necessary calculations
-                return
+    def list_parser(input_list):
+        # Converter from few-dimensions list to one and do calculations, check for empty
+        for b in input_list:  # Do all necessary calculations on each list dimension
+            avg, min_val, max_val, total = filter_and_action(b)  # call function and get answers
+            if avg is None:
+                print("The list is empty, no output is provided")
             else:
-                print("Wrong input, exiting task 2")
-                return
+                print("Answer:")
+                print(f'({avg}, {min_val}, {max_val}, {total})')
+
+    user_list = []  # this list stores final user input list
+    while True:
+        a = input("Please provide comma separated integer list: ")
+        newlist = a.split(',')
+        user_list.append(newlist)
+        choice = input("Do you want to continue filling the list? [y/n]")
+        if choice.lower() == "y":  # Used lower() to handle uppercase input
+            continue  # Get user input while answer is y, get back to while True
+        elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
+            print(f'List: {user_list}')
+            list_parser(user_list)  # Call functions to execute all necessary calculations
+            return
+        else:
+            print("Wrong input, exiting task 2")
+            return
 
 
 def thirdTask():
@@ -107,22 +107,22 @@ def thirdTask():
     # išlaikyti simbolių eiliškumą).
 
     def separateText(x, y):
-        sepList = [] # empty list for result
-        newStr = "" # temp empty string for appending values
+        sepList = []  # empty list for result
+        newStr = ""  # temp empty string for appending values
 
         for i in range(0, len(x)):
             print(i % y)
-            if i % y == y - 1: # checking if i value is last that we need to get
+            if i % y == y - 1:  # checking if i value is last that we need to get
                 newStr += x[i]
-                newUniqStr = "" # new string for unique values
+                newUniqStr = ""  # new string for unique values
                 for char in newStr:
                     if char not in newUniqStr:
-                        newUniqStr += char # if value is unique - append
+                        newUniqStr += char  # if value is unique - append
                 sepList.append(newUniqStr)
-                newStr = "" # clear temp string
+                newStr = ""  # clear temp string
 
             else:
-                newStr += x[i] # if not last value
+                newStr += x[i]  # if not last value
         return sepList
 
     try:
@@ -148,8 +148,8 @@ def fourthTask():
 
     def remove_number_decorator(func):
         def wrapper(*args):
-            avg, min_val, max_val, total = func(*args) # Call the original function
-            if avg is not None: # check if avg is not empty
+            avg, min_val, max_val, total = func(*args)  # Call the original function
+            if avg is not None:  # check if avg is not empty
                 # Subtract user imputed num from results
                 avg -= x
                 min_val -= x
@@ -157,6 +157,7 @@ def fourthTask():
                 total -= x
             # Return the updated average and other values
             return avg, min_val, max_val, total
+
         return wrapper
 
     @remove_number_decorator
@@ -180,7 +181,7 @@ def fourthTask():
         return avg, min_val, max_val, total
 
     def list_parser(input_list):
-        """Converter from few-dimensions list to one and do calculations, check for empty"""
+        # Converter from few-dimensions list to one and do calculations, check for empty
         for b in input_list:  # Do all necessary calculations on each list dimension
             avg, min_val, max_val, total = filter_and_action(b)  # call function and get answers
             if avg is None:
@@ -215,22 +216,22 @@ def fifthTask():
         x = str(input("Please enter a string: "))
     except ValueError:
         print("Invalid string")
-        fifthTask()
+        return
 
     def compress(x):
         count = 1
         newStr = ""
         for i in range(0, len(x)):
-            if (i + 1 < len(x)): # check if not last value
-                if x[i] == x[i + 1]: # if there is same char next then add 1 to count
+            if (i + 1 < len(x)):  # check if not last value
+                if x[i] == x[i + 1]:  # if there is same char next then add 1 to count
                     count += 1
-                else: # if next value is different, then append to string that value and count
+                else:  # if next value is different, then append to string that value and count
                     newStr += x[i]
                     newStr += str(count)
-                    count = 1 # reset counter
+                    count = 1  # reset counter
             else:
                 newStr += x[i]
-                newStr += str(count) # if there is only one in row then add char and add number
+                newStr += str(count)  # if there is only one in row then add char and add number
         return newStr
 
     print(compress(x))
