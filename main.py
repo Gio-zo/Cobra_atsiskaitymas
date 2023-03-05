@@ -1,17 +1,16 @@
-# Klausimas: Ar kinamieji turi buti pavadinti kaip pateikta uzduotyje?! a,b,x,y ir t.t.???
 def firstTask():
     # Sukurti funkciją, kuri priima tris parametrus: n - tekstas, a - tekstas, kurio simboliai yra teigiami, b -
     # tekstas, kurio simboliai yra neigiami.Teigiami simboliai yra verti 1, neigiami verti - 1, o simboliai, kurių nėra
     # nei a, nei b tekste yra vertas 0. Funkcija suskaičiuoja teksto įvertį ir jį grąžina.
 
-    def parsing_string(user_string):
+    def parsingString(userString):
         # Function that take string and write it as a list
-        new_list = []
-        for x in user_string:
-            new_list.append(x)
-        return new_list
+        newList = []
+        for x in userString:
+            newList.append(x)
+        return newList
 
-    def calc_sum(n, a, b):
+    def calcSum(n, a, b):
         # Function that calculate value by taking "a" as PLUS and "b" as MINUS
         value = 0
         for letter in n:
@@ -26,21 +25,21 @@ def firstTask():
 
     try:
         # Defining variables & convert to list
-        n = input("Please provide n:")
-        list_n = parsing_string(n)
-        a = input("Please provide a:")
-        list_a = parsing_string(a)
-        b = input("Please provide b:")
-        list_b = parsing_string(b)
+        n = input("Please provide n: ")
+        listN = parsingString(n)
+        a = input("Please provide a: ")
+        listA = parsingString(a)
+        b = input("Please provide b: ")
+        listB = parsingString(b)
 
         # Check if there are any same values in A and B
-        for char in list_b:
-            if char in list_a:
+        for char in listB:
+            if char in listA:
                 raise ValueError
 
         # Do main calculations
-        answer = calc_sum(list_n, list_a, list_b)
-        print(f'Value of text is {answer}')
+        answer = calcSum(listN, listA, listB)
+        print(f'Value of text is: {answer}')
         input()
 
     except ValueError:
@@ -54,46 +53,46 @@ def secondTask():
     # mažiausią reikšmes, bei sumą. Sukurti antrą funkciją, kuri priima vieną parametrą b - sąrašą sudarytą iš sąrašų
     # ir kiekvienam sąrašo elementui iškviečia pirmą funkciją ir atspausdina gautą rezultatą.
 
-    def filter_and_action(passed_list):
+    def filterAndAction(passedList):
         # Function for calculating list's values
-        filtered_values = []  # This is where new list of filtered values is saved
+        filteredValues = []  # This is where new list of filtered values is saved
         try:
-            for x in passed_list:
+            for x in passedList:
                 if int(x) >= 10 and int(x) <= 100:
-                    filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
+                    filteredValues.append(int(x))  # Convert x (passed list value) to int before appending
         except ValueError:
             print("Something wrong with values")
             return None, None, None, None  # Return early if ValueError occurs
-        if not filtered_values:
+        if not filteredValues:
             return None, None, None, None
         # Calculate task of parameters
-        avg = sum(filtered_values) / len(filtered_values)
-        min_val = min(filtered_values)
-        max_val = max(filtered_values)
-        total = sum(filtered_values)
-        return avg, min_val, max_val, total
+        avg = sum(filteredValues) / len(filteredValues)
+        minVal = min(filteredValues)
+        maxVal = max(filteredValues)
+        total = sum(filteredValues)
+        return avg, minVal, maxVal, total
 
-    def list_parser(input_list):
+    def listParser(inputList):
         # Converter from few-dimensions list to one and do calculations, check for empty
-        for b in input_list:  # Do all necessary calculations on each list dimension
-            avg, min_val, max_val, total = filter_and_action(b)  # call function and get answers
+        for b in inputList:  # Do all necessary calculations on each list dimension
+            avg, minVal, maxVal, total = filterAndAction(b)  # call function and get answers
             if avg is None:
                 print("The list is empty, no output is provided")
             else:
                 print("Answer:")
-                print(f'({avg}, {min_val}, {max_val}, {total})')
+                print(f'({avg}, {minVal}, {maxVal}, {total})')
 
-    user_list = []  # this list stores final user input list
+
+    userList = []  # this list stores final user input list
     while True:
         a = input("Please provide comma separated integer list: ")
-        newlist = a.split(',')
-        user_list.append(newlist)
+        newList = a.split(',')
+        userList.append(newList)
         choice = input("Do you want to continue filling the list? [y/n]")
         if choice.lower() == "y":  # Used lower() to handle uppercase input
             continue  # Get user input while answer is y, get back to while True
         elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
-            print(f'List: {user_list}')
-            list_parser(user_list)  # Call functions to execute all necessary calculations
+            listParser(userList)  # Call functions to execute all necessary calculations
             return
         else:
             print("Wrong input, exiting task 2")
@@ -111,7 +110,6 @@ def thirdTask():
         newStr = ""  # temp empty string for appending values
 
         for i in range(0, len(x)):
-            print(i % y)
             if i % y == y - 1:  # checking if i value is last that we need to get
                 newStr += x[i]
                 newUniqStr = ""  # new string for unique values
@@ -146,65 +144,64 @@ def fourthTask():
     # bei sumą. Dekoratorius priima vieną parametrą x - skaičių. Atimti parametrą x iš kiekvienos dekoruojamos
     # funkcijos grąžinamos reikšmės.
 
-    def remove_number_decorator(func):
+    def removeNumberDecorator(func):
         def wrapper(*args):
-            avg, min_val, max_val, total = func(*args)  # Call the original function
+            avg, minVal, maxVal, total = func(*args)  # Call the original function
             if avg is not None:  # check if avg is not empty
                 # Subtract user imputed num from results
                 avg -= x
-                min_val -= x
-                max_val -= x
+                minVal -= x
+                maxVal -= x
                 total -= x
             # Return the updated average and other values
-            return avg, min_val, max_val, total
+            return avg, minVal, maxVal, total
 
         return wrapper
 
-    @remove_number_decorator
-    def filter_and_action(passed_list):
+    @removeNumberDecorator
+    def filterAndAction(passedList):
         # Function for calculating list's values
-        filtered_values = []  # This is where new list of filtered values is saved
+        filteredValues = []  # This is where new list of filtered values is saved
         try:
-            for x in passed_list:
+            for x in passedList:
                 if int(x) >= 10 and int(x) <= 100:
-                    filtered_values.append(int(x))  # Convert x (passed list value) to int before appending
+                    filteredValues.append(int(x))  # Convert x (passed list value) to int before appending
         except ValueError:
             print("Something wrong with values")
             return None, None, None, None  # Return early if ValueError occurs
-        if not filtered_values:
+        if not filteredValues:
             return None, None, None, None
         # Calculate task of parameters
-        avg = sum(filtered_values) / len(filtered_values)
-        min_val = min(filtered_values)
-        max_val = max(filtered_values)
-        total = sum(filtered_values)
-        return avg, min_val, max_val, total
+        avg = sum(filteredValues) / len(filteredValues)
+        minVal = min(filteredValues)
+        maxVal = max(filteredValues)
+        total = sum(filteredValues)
+        return avg, minVal, maxVal, total
 
-    def list_parser(input_list):
+    def listParser(inputList):
         # Converter from few-dimensions list to one and do calculations, check for empty
-        for b in input_list:  # Do all necessary calculations on each list dimension
-            avg, min_val, max_val, total = filter_and_action(b)  # call function and get answers
+        for b in inputList:  # Do all necessary calculations on each list dimension
+            avg, minVal, maxVal, total = filterAndAction(b)  # call function and get answers
             if avg is None:
                 print("The list is empty, no output is provided")
             else:
                 print("Answer:")
-                print(f'({avg}, {min_val}, {max_val}, {total})')
+                print(f'({avg}, {minVal}, {maxVal}, {total})')
 
-    user_list = []  # this list stores final user input list
+    userList = []  # this list stores final user input list
     while True:
-        user_input = input("Please provide comma separated integer list: ")
-        newlist = user_input.split(',')
-        user_list.append(newlist)
+        userInput = input("Please provide comma separated integer list: ")
+        newList = userInput.split(',')
+        userList.append(newList)
         choice = input("Do you want to continue filling the list? [y/n]")
         if choice.lower() == "y":  # Used lower() to handle uppercase input
             continue  # Get user input while answer is y, get back to while True
         elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
             x = int(input("Enter a number to remove: "))  # get number that user what to subtract from results
-            print(f'List: {user_list}')
-            list_parser(user_list)  # Call functions to execute all necessary calculations
+            listParser(userList)  # Call functions to execute all necessary calculations
             return
         else:
-            print("Wrong input, exiting task 2")
+            print("Wrong input, exiting task 4")
             return
 
 
@@ -214,6 +211,8 @@ def fifthTask():
     # eilės einančius simbolius.
     try:
         x = str(input("Please enter a string: "))
+        if len(x) == 0:
+            print("You entered an empty string")
     except ValueError:
         print("Invalid string")
         return
@@ -232,10 +231,12 @@ def fifthTask():
             else:
                 newStr += x[i]
                 newStr += str(count)  # if there is only one in row then add char and add number
+        if " " in newStr:
+            print("Space was replaced by {space}")
+            return newStr.replace(" ", "{space}")
         return newStr
 
     print(compress(x))
-    input()
     return
 
 
