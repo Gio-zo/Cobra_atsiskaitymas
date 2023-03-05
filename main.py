@@ -147,7 +147,6 @@ def fourthTask():
     # funkcijos grąžinamos reikšmės.
 
     def remove_number_decorator(func):
-        num = int(input("Enter a number to remove: ")) # get number that user what to subtract from results
         def wrapper(*args):
             avg, min_val, max_val, total = func(*args) # Call the original function
             if avg is not None: # check if avg is not empty
@@ -199,6 +198,7 @@ def fourthTask():
         if choice.lower() == "y":  # Used lower() to handle uppercase input
             continue  # Get user input while answer is y, get back to while True
         elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
+            num = int(input("Enter a number to remove: "))  # get number that user what to subtract from results
             print(f'List: {user_list}')
             list_parser(user_list)  # Call functions to execute all necessary calculations
             return
