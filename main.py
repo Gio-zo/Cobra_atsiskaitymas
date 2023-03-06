@@ -201,7 +201,7 @@ def fourthTask():
                 x = int(input("Enter a number to  subtract: "))  # get number that user what to subtract from results
             except ValueError:
                 print("Cannot validate your input, try again with valida input\n")
-                return
+                return # Leave task 4 if user input wrong x (number to subtract)
             listParser(userList)  # Call functions to execute all necessary calculations
             return
         else:
