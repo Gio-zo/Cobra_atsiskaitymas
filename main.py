@@ -61,7 +61,7 @@ def secondTask():
                 if int(x) >= 10 and int(x) <= 100:
                     filteredValues.append(int(x))  # Convert x (passed list value) to int before appending
         except ValueError:
-            print("Something wrong with values")
+            print("Something wrong with list values")
             return None, None, None, None  # Return early if ValueError occurs
         if not filteredValues:
             return None, None, None, None
@@ -167,7 +167,7 @@ def fourthTask():
                 if int(x) >= 10 and int(x) <= 100:
                     filteredValues.append(int(x))  # Convert x (passed list value) to int before appending
         except ValueError:
-            print("Something wrong with values")
+            print("Something wrong with list values")
             return None, None, None, None  # Return early if ValueError occurs
         if not filteredValues:
             return None, None, None, None
@@ -197,7 +197,11 @@ def fourthTask():
         if choice.lower() == "y":  # Used lower() to handle uppercase input
             continue  # Get user input while answer is y, get back to while True
         elif choice.lower() == "n":  # activate if user finished with inputting list (choose n)
-            x = int(input("Enter a number to remove: "))  # get number that user what to subtract from results
+            try: # This try / except used for checking if x (number to subtract) is not a string or any other potential threat for breaking the code
+                x = int(input("Enter a number to  subtract: "))  # get number that user what to subtract from results
+            except ValueError:
+                print("Cannot validate your input, try again with valida input\n")
+                return
             listParser(userList)  # Call functions to execute all necessary calculations
             return
         else:
