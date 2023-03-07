@@ -126,7 +126,7 @@ def thirdTask():
     try:
         x = input("Please enter list of chars as x: ")
         y = int(input("Please enter a single positive integer as y: "))
-        if y < 0:
+        if y <= 0:
             print("y must be bigger than 0")
             return
         if len(x) % y != 0:
@@ -200,7 +200,7 @@ def fourthTask():
             try: # This try / except used for checking if x (number to subtract) is not a string or any other potential threat for breaking the code
                 x = int(input("Enter a number to  subtract: "))  # get number that user what to subtract from results
             except ValueError:
-                print("Cannot validate your input, try again with valida input\n")
+                print("Cannot validate your input, try again with valid input\n")
                 return # Leave task 4 if user input wrong x (number to subtract)
             listParser(userList)  # Call functions to execute all necessary calculations
             return
